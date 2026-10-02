@@ -5,7 +5,7 @@ const EducationModel = new mongoose.Schema({
         type: String,
         default: ""
     },
-    EducationType: {
+    educationType: {
         type: String,
         default: ""
     },
@@ -17,7 +17,7 @@ const EducationModel = new mongoose.Schema({
         type: String,
         default: ""
     },
-    percentge:{
+    percentage:{
         type: Number,
         default: 0
     },

@@ -20,10 +20,20 @@ app.use(express.urlencoded({limit: "500mb", extended: true, parameterLimit:50000
 app.use(express.json());
 app.use(express.json());
 
-app.use(indexRoutes); 
+app.use(indexRoutes);
 
 app.get("/", (req, res) => {
   return res.status(200).send("Welcome to Portfilo Backend");
+});
+
+// Global error handler - turns next(new ErrorHandler(...)) into a proper JSON response
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  return res.status(statusCode).json({
+    status: false,
+    code: statusCode,
+    message: err.message || "Internal Server Error",
+  });
 });
 
 const PORT = process.env.PORT || 5000;
